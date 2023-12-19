@@ -7,7 +7,6 @@ type Props = {
   open: boolean;
   closeModal: () => void;
   draggable?: boolean;
-  hideCloseButton?: boolean;
   title?: string;
   modalClass?: string;
   footer?: ReactNode;
@@ -19,7 +18,6 @@ const Modal: React.FC<Props> = ({
   open,
   closeModal,
   draggable,
-  hideCloseButton,
   title,
   modalClass = "",
   footer,
@@ -80,7 +78,7 @@ const Modal: React.FC<Props> = ({
           <div className="flex-1 overflow-auto">{children}</div>
 
           {footer}
-          {!footer && !hideCloseButton && (
+          {!footer && (
             <div className={`flex justify-end ${footerClass}`}>
               <Button variant="primary" onClick={closeModal}>
                 Close
