@@ -9,6 +9,7 @@ type Props = {
   draggable?: boolean;
   hideCloseButton?: boolean;
   title?: string;
+  modalClass?: string;
   footer?: ReactNode;
   footerClass?: string;
   labelClass?: string;
@@ -20,6 +21,7 @@ const Modal: React.FC<Props> = ({
   draggable,
   hideCloseButton,
   title,
+  modalClass = "",
   footer,
   footerClass = "",
   labelClass = "",
@@ -58,7 +60,7 @@ const Modal: React.FC<Props> = ({
     return ReactDOM.createPortal(
       <div
         onClick={onOverlayClick}
-        className="fixed top-0 left-0 bottom-0 right-0 bg-gray-900/80 backdrop-blur-sm"
+        className="fixed top-0 left-0 bottom-0 right-0 bg-gray-900/80 backdrop-blur-sm flex flex-col"
         onMouseMove={onMouseMove}
         onMouseUp={onDragEnd}
       >
@@ -69,13 +71,13 @@ const Modal: React.FC<Props> = ({
             cursor: dragging ? "move" : "default",
           }}
           onClick={onModalClick}
-          className="w-8/12 my-10 mx-auto bg-white flex flex-col gap-4 m-4 rounded-xl p-5"
+          className={`w-8/12 my-auto mx-auto bg-white flex flex-col gap-4 m-4 rounded-xl p-5 max-h-96 ${modalClass}`}
           onMouseDown={onDragStart}
         >
           {title && title !== "" && (
             <label className={`uppercase text-lg ${labelClass}`}>{title}</label>
           )}
-          <div>{children}</div>
+          <div className="flex-1 overflow-auto">{children}</div>
 
           {footer}
           {!footer && !hideCloseButton && (

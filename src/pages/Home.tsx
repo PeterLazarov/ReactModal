@@ -32,6 +32,9 @@ const Home: React.FC = () => {
           />
           <label className=" text-base">Drag me</label>
         </div>
+        <div style={{ height: 8000 }}>
+          <label className=" text-base">I am a very big box</label>
+        </div>
       </Modal>
     </div>
   );
