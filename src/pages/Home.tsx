@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         Open
       </Button>
       <div>{`${showModal}`}</div>
-      <Modal open={showModal} closeModal={() => setShowModal(false)}>
+      <Modal open={showModal} closeModal={() => setShowModal(false)} draggable>
         <div>CONTENT</div>
       </Modal>
     </div>
