@@ -8,6 +8,10 @@ type Props = {
   closeModal: () => void;
   draggable?: boolean;
   hideCloseButton?: boolean;
+  title?: string;
+  footer?: ReactNode;
+  footerClass?: string;
+  labelClass?: string;
 };
 const Modal: React.FC<Props> = ({
   children,
@@ -15,6 +19,10 @@ const Modal: React.FC<Props> = ({
   closeModal,
   draggable,
   hideCloseButton,
+  title,
+  footer,
+  footerClass = "",
+  labelClass = "",
 }) => {
   const [transformCoord, setTransformCoord] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
@@ -58,13 +66,23 @@ const Modal: React.FC<Props> = ({
           style={{
             transform: `translate(${transformCoord.x}px, ${transformCoord.y}px)`,
             userSelect: dragging ? "none" : "all",
+            cursor: dragging ? "move" : "default",
           }}
           onClick={onModalClick}
           className="w-8/12 my-10 mx-auto bg-white flex flex-col gap-4 m-4 rounded-xl p-5"
           onMouseDown={onDragStart}
         >
-          {children}
-          {!hideCloseButton && <Button onClick={closeModal}>Close</Button>}
+          {title && title !== "" && (
+            <label className={`uppercase text-lg ${labelClass}`}>{title}</label>
+          )}
+          <div>{children}</div>
+
+          {footer}
+          {!footer && !hideCloseButton && (
+            <div className={`flex justify-end ${footerClass}`}>
+              <Button onClick={closeModal}>Close</Button>
+            </div>
+          )}
         </div>
       </div>,
       document.getElementById("modalRoot")!

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
+import MoveArrows from "../assets/moveArrows.png";
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -17,8 +18,20 @@ const Home: React.FC = () => {
         Open
       </Button>
       <div>{`${showModal}`}</div>
-      <Modal open={showModal} closeModal={() => setShowModal(false)} draggable>
-        <div>CONTENT</div>
+      <Modal
+        open={showModal}
+        closeModal={() => setShowModal(false)}
+        title="Draggable dialog"
+        draggable
+      >
+        <div className="flex gap-4">
+          <img
+            className=" w-7 h-7 select-none "
+            draggable={false}
+            src={MoveArrows}
+          />
+          <label className=" text-base">Drag me</label>
+        </div>
       </Modal>
     </div>
   );
