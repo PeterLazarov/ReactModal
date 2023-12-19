@@ -1,5 +1,6 @@
 import React, { ReactNode, useRef } from "react";
 import ReactDOM from "react-dom";
+import Button from "./Button";
 
 type Props = {
   children: ReactNode;
@@ -7,7 +8,7 @@ type Props = {
   closeModal: () => void;
   hideCloseButton?: boolean;
 };
-const NewsModal: React.FC<Props> = ({
+const Modal: React.FC<Props> = ({
   children,
   open,
   closeModal,
@@ -16,16 +17,8 @@ const NewsModal: React.FC<Props> = ({
   // Reference to the modal's outer div element
   const divRef = useRef<HTMLDivElement>(null);
 
-  // Function to handle clicks outside the modal
-  function onOverlayClick(e: React.MouseEvent<HTMLDivElement>) {
-    console.log(
-      "handleClickOutside",
-      divRef.current && !divRef.current.contains(e.target as HTMLElement)
-    );
-    if (divRef.current && !divRef.current.contains(e.target as HTMLElement)) {
-      console.log("handleClickOutside - if");
-      closeModal();
-    }
+  function onOverlayClick() {
+    closeModal();
   }
 
   function onModalClick(e: React.MouseEvent<HTMLDivElement>) {
@@ -44,14 +37,7 @@ const NewsModal: React.FC<Props> = ({
           className="w-8/12 my-10 mx-auto bg-white flex flex-col gap-4 m-4 rounded-xl"
         >
           {children}
-          {!hideCloseButton && (
-            <button
-              onClick={closeModal}
-              className="text-3xl bg-red-500 p-2 w-1/5 mx-auto rounxded-xl"
-            >
-              Close
-            </button>
-          )}
+          {!hideCloseButton && <Button onClick={closeModal}>Close</Button>}
         </div>
       </div>,
       document.getElementById("modalRoot")!
@@ -61,4 +47,4 @@ const NewsModal: React.FC<Props> = ({
   }
 };
 
-export default NewsModal;
+export default Modal;
