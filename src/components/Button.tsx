@@ -11,7 +11,12 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: keyof typeof variants;
 };
 
-const Button: React.FC<Props> = ({ children, variant, className, ...rest }) => {
+const Button: React.FC<Props> = ({
+  children,
+  variant,
+  className = "",
+  ...rest
+}) => {
   return (
     <button
       className={`py-2 px-4 rounded ${variants[variant]} ${className}`}
