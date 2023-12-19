@@ -5,7 +5,7 @@ import MoveArrows from "../assets/moveArrows.png";
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
-  const [allowDragging, setAllowDragging] = useState(false);
+  const [allowDragging, setAllowDragging] = useState(true);
 
   return (
     <div>
@@ -20,21 +20,18 @@ const Home: React.FC = () => {
       </Button>
       <Modal
         open={showModal}
-        closeModal={() => setShowModal(false)}
+        closeModal={() => {
+          setShowModal(false);
+        }}
         title="Draggable dialog"
         draggable={allowDragging}
-        footer={
-          <div className="flex justify-end gap-4">
-            <Button
-              variant="secondary"
-              onClick={() => setAllowDragging(!allowDragging)}
-            >
-              {allowDragging ? "Deny Dragging" : "Allow Dragging"}
-            </Button>
-            <Button variant="primary" onClick={() => setShowModal(false)}>
-              Close
-            </Button>
-          </div>
+        footerButtons={
+          <Button
+            variant="secondary"
+            onClick={() => setAllowDragging(!allowDragging)}
+          >
+            {allowDragging ? "Deny Dragging" : "Allow Dragging"}
+          </Button>
         }
       >
         <div className="flex gap-4">

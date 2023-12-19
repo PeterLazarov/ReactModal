@@ -3,11 +3,7 @@ import Home from "./pages/Home";
 
 function Routing() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" Component={Home} />
-      </Routes>
-    </Router>
+    
   );
 }
 

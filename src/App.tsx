@@ -1,11 +1,13 @@
-import Routing from "./Routing";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <>
-      <div id="modalRoot" />
-      <Routing />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" Component={Home} />
+      </Routes>
+    </Router>
   );
 }
 
