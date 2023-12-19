@@ -82,7 +82,9 @@ const Modal: React.FC<Props> = ({
           {footer}
           {!footer && !hideCloseButton && (
             <div className={`flex justify-end ${footerClass}`}>
-              <Button onClick={closeModal}>Close</Button>
+              <Button variant="primary" onClick={closeModal}>
+                Close
+              </Button>
             </div>
           )}
         </div>
