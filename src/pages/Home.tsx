@@ -8,15 +8,17 @@ const Home: React.FC = () => {
   const [allowDragging, setAllowDragging] = useState(true);
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="p-4">
+      <h1 className="text-3xl font-bold no-underline mb-4">
+        Modal Component Demo
+      </h1>
       <Button
         variant="primary"
         onClick={() => {
           setShowModal(true);
         }}
       >
-        Open
+        Open Dialog
       </Button>
       <Modal
         open={showModal}
@@ -36,14 +38,16 @@ const Home: React.FC = () => {
       >
         <div className="flex gap-4">
           <img
-            className=" w-7 h-7 select-none "
+            className="w-7 h-7 select-none "
             draggable={false}
             src={MoveArrows}
           />
-          <label className=" text-base">Drag me</label>
+          <span className="text-base">
+            {allowDragging ? "Drag me" : "Allow Dragging so you can drag me"}
+          </span>
         </div>
         <div style={{ height: 8000 }}>
-          <label className=" text-base">I am a very big box</label>
+          <span className="text-base">I am a very big box</span>
         </div>
       </Modal>
     </div>
